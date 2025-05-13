@@ -42,6 +42,7 @@ function loadTasks() {
   });
 }
 
+// Function that edit a task
 function editTask(taskId) {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   const task = tasks.find((t) => t.id === taskId);
@@ -52,6 +53,15 @@ function editTask(taskId) {
   if (newText === null || newText.trim() === "") return;
 
   task.text = newText;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+}
+
+// Function that delete a task
+function deleteTask(taskId) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks = tasks.filter((task) => task.id !== taskId);
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 }
