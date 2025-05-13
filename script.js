@@ -31,5 +31,13 @@ function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   taskList.innerHTML = "";
 
-  tasks.forEach((task) => {});
+  tasks.forEach((task) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${task.text}</span>
+      <button onClick="editTask(${task.id})">Edit</button>
+      <button onClick="deleteTask(${task.id})">Delete</button>
+    `;
+    taskList.appendChild(li);
+  });
 }
