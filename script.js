@@ -65,3 +65,7 @@ function deleteTask(taskId) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 }
+
+function renderTasks() {
+  loadTasks();
+}
