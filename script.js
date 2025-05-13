@@ -41,3 +41,17 @@ function loadTasks() {
     taskList.appendChild(li);
   });
 }
+
+function editTask(taskId) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const task = tasks.find((t) => t.id === taskId);
+
+  if (!task) return;
+
+  const newText = prompt("Edit task:", task.text);
+  if (newText === null || newText.trim() === "") return;
+
+  task.text = newText;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+}
